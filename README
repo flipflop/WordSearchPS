@@ -1,0 +1,16 @@
+This was a Word Search Game written in PostScript for my first year of study in Software Systems for the Arts and Media.
+
+The project was completed in 1995 for my Computing and Representation class.
+
+It was originally intended for use in the command line GhostScript Postscript interpreter for the PC, some features may not render correctly in other Post Script interpreters.
+
+*How to Play*
+
+The game displays a 5 x 5 grid of words, to play simply type a word you find on the grid in the interpreter.
+
+
+
+
+
+
+
