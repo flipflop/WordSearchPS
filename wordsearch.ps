@@ -108,9 +108,9 @@ moveto 250 600 lineto 300 350 moveto
 
 % Procedure to draw information
 
-265 185 515 55 1 1 1 setrgbcolor rectfill
+265 185 555 55 1 1 1 setrgbcolor rectfill
 
-265 185 515 55 0 0.5 0.7 setrgbcolor 2 setlinewidth rectstroke
+265 185 555 55 0 0.5 0.7 setrgbcolor 2 setlinewidth rectstroke
 
 /Helvectica-Oblique findfont 50 scalefont setfont 270 195 moveto
 0 0.5 0.7 setrgbcolor (You must find 8 words) show
@@ -129,7 +129,7 @@ moveto 250 600 lineto 300 350 moveto
 % Procedure to display word and cross out line when correct word is found
 
 /modem1 { /Helvetica-Oblique findfont 45 scalefont setfont
-500 550 moveto 0 0 1 setrgbcolor (MODEM) show
+500 500 moveto 0 0 1 setrgbcolor (MODEM) show
 500 300 moveto 1 0 0 setrgbcolor (W) show } def
 
 % Modem procedure
@@ -147,7 +147,7 @@ moveto 250 600 lineto 300 350 moveto
 1 0 0 setrgbcolor stroke net1 } def
 
 /host1 { /Helvetica-Oblique findfont 45 scalefont setfont
-500 550 moveto 0 0 1 setrgbcolor (HOST) show
+500 500 moveto 0 0 1 setrgbcolor (HOST) show
 600 300 moveto 1 0 0 setrgbcolor (L) show } def
 
 % Host procedure

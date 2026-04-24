@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebPS — PostScript Interpreter</title>
+  <meta name="description" content="Web-based PostScript interpreter rendering wordsearch.ps on HTML Canvas">
+
+  <!-- Google Fonts — preconnect + swap for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="app-logo">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <rect x="1" y="1" width="24" height="24" rx="6" stroke="#6c8cff" stroke-width="2"/>
+          <text x="5" y="19" font-family="monospace" font-size="14" font-weight="bold" fill="#6c8cff">PS</text>
+        </svg>
+        <span>Web<span class="accent">PS</span></span>
+      </div>
+      <div class="header-meta">
+        <span>Word Search for PostScript — Rozario Chivers, 1995</span>
+        <button id="about-btn" class="btn">About</button>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="app-main">
+
+      <!-- Canvas Panel -->
+      <section class="canvas-panel">
+        <div class="canvas-toolbar">
+          <span class="label">Canvas Output</span>
+          <span id="file-info" class="file-badge">wordsearch.ps</span>
+          <button id="reset-btn" class="btn btn-danger">Reset</button>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="ps-canvas"></canvas>
+        </div>
+        <div class="word-grid">
+          <div class="word-grid-header">
+            <span class="label">Word Search</span>
+            <button id="words-toggle" class="btn btn-sm">Show Words</button>
+          </div>
+          <div id="words-list" class="word-list" hidden>
+          <button class="word-btn" data-word="modem">MODEM</button>
+          <button class="word-btn" data-word="net">NET</button>
+          <button class="word-btn" data-word="host">HOST</button>
+          <button class="word-btn" data-word="login">LOGIN</button>
+          <button class="word-btn" data-word="ftp">FTP</button>
+          <button class="word-btn" data-word="lan">LAN</button>
+          <button class="word-btn" data-word="node">NODE</button>
+          <button class="word-btn" data-word="bit">BIT</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Side Panel -->
+      <aside class="side-panel">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="repl">REPL</button>
+          <button class="tab-btn" data-tab="editor">Editor</button>
+        </div>
+
+        <!-- REPL Tab -->
+        <div id="tab-repl" class="tab-panel active">
+          <div class="repl-section">
+            <div id="output" class="output-area" role="log" aria-live="polite"></div>
+            <div class="stack-section">
+              <div class="label">Operand Stack</div>
+              <div id="stack-view"><div class="stack-empty">Stack empty</div></div>
+            </div>
+            <div class="input-row">
+              <span class="prompt">PS&gt;</span>
+              <input id="ps-input" type="text" placeholder="Enter PostScript command…" autocomplete="off" spellcheck="false">
+              <button id="run-btn" class="btn btn-success">Run</button>
+              <button id="clear-btn" class="btn">Clear</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Editor Tab -->
+        <div id="tab-editor" class="tab-panel">
+          <textarea id="ps-editor" spellcheck="false" placeholder="% Paste or write PostScript here…&#10;% Then click Run to render on canvas."></textarea>
+          <div class="editor-toolbar">
+            <button id="editor-run-btn" class="btn btn-primary">Run Editor</button>
+          </div>
+        </div>
+      </aside>
+
+    </main>
+  </div>
+
+  <!-- About Modal -->
+  <div id="about-modal" class="modal-overlay" hidden>
+    <div class="modal">
+      <button id="about-close" class="modal-close" aria-label="Close">&times;</button>
+      <h2 class="modal-title">About This Project</h2>
+      <div class="modal-body">
+        <p>A <strong>Word Search Game</strong> written in PostScript by <strong>Rozario Chivers</strong> in <strong>1995</strong>, for the Computing and Representation class during the first year of study in Software Systems for the Arts and Media.</p>
+        <p>The game was originally designed for the command-line GhostScript PostScript interpreter on PC. Nearly three decades later, it has been brought to the web using a custom-built PostScript interpreter that renders directly onto HTML Canvas.</p>
+        <h3>How to Play</h3>
+        <p>The game displays a 5 × 5 grid of letters. Hidden inside are <strong>8 networking terms</strong>. Find them by clicking the word buttons below the canvas, or by typing the word into the PostScript REPL. Each correct word reveals a red cross-out line on the grid and a letter — find all eight to spell out the hidden message.</p>
+        <h3>Technology</h3>
+        <p>This web application is a from-scratch PostScript interpreter comprising a lexer/parser, stack machine, dictionary system, and a Canvas 2D graphics engine — all written in vanilla JavaScript with no dependencies. The original <code>wordsearch.ps</code> source file runs unmodified.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts — ordered by dependency -->
+  <script src="ps-parser.js"></script>
+  <script src="ps-fonts.js"></script>
+  <script src="ps-graphics.js"></script>
+  <script src="ps-interpreter.js"></script>
+  <script src="ps-ui.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
